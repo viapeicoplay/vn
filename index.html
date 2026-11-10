@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Tham Gia Câu Lạc Bộ</title>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)
+}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1756348125592125');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1756348125592125&ev=PageView&noscript=1" alt=""></noscript>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:#000}
+body{
+  min-height:100vh;min-height:100svh;
+  background:radial-gradient(ellipse at 50% 45%,#141414 0%,#070707 55%,#000 100%);
+  color:#f3eee3;
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:40px 24px;gap:48px;
+}
+
+/* ===== TABLE ===== */
+.table-wrap{
+  position:relative;
+  width:min(900px,100%);
+  aspect-ratio:3/2;
+  filter:drop-shadow(0 50px 60px rgba(0,0,0,.7));
+}
+.table{
+  position:absolute;inset:0;
+  border-radius:50%;
+  background:
+    radial-gradient(ellipse at 50% 35%,#4a2d18 0%,#331d0f 55%,#1e1109 100%);
+  box-shadow:
+    inset 0 20px 40px rgba(0,0,0,.6),
+    inset 0 -15px 30px rgba(0,0,0,.5);
+}
+.table::before{
+  content:"";position:absolute;inset:7%;
+  border-radius:50%;
+  border:2px solid #c9a35a;
+  box-shadow:0 0 0 1px rgba(201,163,90,.3);
+}
+.felt{
+  position:absolute;inset:8.5%;
+  border-radius:50%;
+  background:
+    radial-gradient(ellipse at 50% 40%,#2a7a4a 0%,#1e5a36 55%,#113d23 100%);
+  box-shadow:
+    inset 0 15px 40px rgba(0,0,0,.45),
+    inset 0 -10px 30px rgba(0,0,0,.4);
+  overflow:hidden;
+}
+.felt::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 50% 50%,transparent 24%,rgba(255,255,255,.04) 24.3%,transparent 25%),
+    radial-gradient(circle at 50% 50%,transparent 32%,rgba(255,255,255,.035) 32.3%,transparent 33%),
+    radial-gradient(circle at 50% 50%,transparent 40%,rgba(255,255,255,.03) 40.3%,transparent 41%);
+}
+.felt::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 15%,rgba(255,255,255,.08),transparent 45%);
+}
+
+/* ===== CARDS (face up) ===== */
+.cards{
+  position:absolute;
+  top:35%;left:50%;
+  transform:translate(-50%,-50%);
+  display:flex;gap:min(2%,10px);
+  z-index:3;
+}
+.card{
+  position:relative;
+  width:min(11vw,110px);
+  aspect-ratio:5/7;
+  background:linear-gradient(145deg,#fdfaf0,#ebe6d7);
+  border-radius:8px;
+  box-shadow:
+    0 12px 22px rgba(0,0,0,.55),
+    inset 0 0 0 1px rgba(0,0,0,.08);
+  font-family:Georgia,"Times New Roman",serif;
+  color:#1a1a1a;
+  overflow:hidden;
+}
+.card.red{color:#b2272a}
+.card .corner{
+  position:absolute;
+  font-weight:700;
+  font-size:clamp(14px,2vw,22px);
+  line-height:.9;
+  text-align:center;
+}
+.card .corner.tl{top:8%;left:9%}
+.card .corner.br{bottom:8%;right:9%;transform:rotate(180deg)}
+.card .corner .rank{display:block}
+.card .corner .pip{display:block;font-size:.85em;margin-top:2px}
+.card .big{
+  position:absolute;inset:0;
+  display:grid;place-items:center;
+  font-size:clamp(42px,6vw,72px);
+  line-height:1;
+}
+.card.c1{transform:rotate(-4deg) translateY(2%)}
+.card.c2{transform:translateY(-2%);z-index:1}
+.card.c3{transform:rotate(5deg) translateY(2%)}
+
+/* ===== HOLE CARDS (backs) ===== */
+.holes{
+  position:absolute;
+  left:22%;top:58%;
+  transform:translate(-50%,-50%);
+  z-index:2;
+}
+.hole{
+  position:absolute;
+  width:min(9vw,90px);
+  aspect-ratio:5/7;
+  border-radius:8px;
+  background:
+    radial-gradient(circle at 50% 50%,#5a1a20 0%,#3a0f14 70%,#260a0d 100%);
+  border:1.5px solid #c9a35a;
+  box-shadow:
+    0 12px 22px rgba(0,0,0,.6),
+    inset 0 0 0 3px #260a0d,
+    inset 0 0 0 4px rgba(201,163,90,.55);
+  display:grid;place-items:center;
+  color:#c9a35a;
+  font-family:Georgia,serif;
+  font-size:clamp(16px,2.4vw,28px);
+}
+.hole.h1{transform:rotate(-14deg) translate(-40%,0)}
+.hole.h2{transform:rotate(-4deg) translate(-10%,-6%)}
+
+/* ===== CHIPS ===== */
+.chips{
+  position:absolute;
+  right:16%;top:45%;
+  transform:translate(0,-50%);
+  z-index:2;
+}
+.chip-stack{
+  position:relative;
+  width:min(9vw,88px);
+  aspect-ratio:1;
+}
+.chip-stack .disk{
+  position:absolute;left:0;right:0;
+  height:16%;
+  border-radius:50%/100%;
+  background:
+    linear-gradient(180deg,#2a2220 0%,#120c0b 100%);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.08),
+    inset 0 -2px 0 rgba(0,0,0,.5);
+}
+.chip-stack .disk::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:
+    repeating-linear-gradient(90deg,
+      transparent 0 6px,
+      rgba(201,163,90,.9) 6px 8px,
+      transparent 8px 14px);
+  opacity:.7;
+  mask-image:linear-gradient(180deg,transparent 30%,#000 30%,#000 70%,transparent 70%);
+}
+.chip-stack .disk.top{
+  background:radial-gradient(ellipse at 50% 40%,#2a2220,#0f0a09);
+}
+.chip-stack .disk.top::after{
+  content:"♠";
+  position:absolute;inset:0;
+  display:grid;place-items:center;
+  color:#c9a35a;
+  font-family:Georgia,serif;
+  font-size:50%;
+}
+.chip-single{
+  position:absolute;
+  right:-18%;top:70%;
+  width:min(6vw,58px);
+  aspect-ratio:1;
+}
+.chip-single .disk{
+  position:absolute;left:0;right:0;
+  height:24%;
+  border-radius:50%/100%;
+  background:linear-gradient(180deg,#2a2220,#120c0b);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.08),
+    inset 0 -2px 0 rgba(0,0,0,.5);
+}
+.chip-single .disk::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:
+    repeating-linear-gradient(90deg,
+      transparent 0 5px,
+      rgba(201,163,90,.9) 5px 7px,
+      transparent 7px 12px);
+  mask-image:linear-gradient(180deg,transparent 30%,#000 30%,#000 70%,transparent 70%);
+  opacity:.7;
+}
+
+.s1{bottom:0}
+.s2{bottom:10%}
+.s3{bottom:20%}
+.s4{bottom:30%}
+.s5{bottom:40%}
+.s6{bottom:50%}
+.s7{bottom:60%}
+
+/* ===== CTA ===== */
+.cta{
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:14px;
+  width:min(520px,calc(100% - 48px));
+  min-height:62px;
+  padding:0 32px;
+  background:linear-gradient(180deg,#e9c67a 0%,#c9a35a 50%,#a9823e 100%);
+  color:#1a1a1a;
+  text-decoration:none;
+  font-size:15px;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  border-radius:4px;
+  box-shadow:
+    0 12px 28px rgba(201,163,90,.22),
+    inset 0 1px 0 rgba(255,255,255,.4),
+    inset 0 -1px 0 rgba(0,0,0,.25);
+  transition:transform .2s ease,filter .2s ease;
+}
+.cta:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.cta:active{transform:translateY(0)}
+.cta svg{width:18px;height:18px;flex:none}
+
+/* ===== MOBILE ===== */
+@media(max-width:640px){
+  body{padding:24px 16px;gap:32px;justify-content:center}
+  .table-wrap{aspect-ratio:3/2.1}
+  .card{width:min(16vw,78px)}
+  .hole{width:min(14vw,66px)}
+  .holes{left:24%;top:60%}
+  .chips{right:14%;top:44%}
+  .chip-stack{width:min(14vw,70px)}
+  .chip-single{width:min(9vw,46px);right:-22%}
+  .cta{
+    width:100%;
+    min-height:58px;
+    font-size:13px;
+    letter-spacing:.1em;
+    padding:0 20px;
+  }
+}
+@media(max-width:380px){
+  .table-wrap{aspect-ratio:3/2.3}
+  .card{width:min(18vw,70px)}
+  .cards{gap:4px}
+  .cta{font-size:12px;letter-spacing:.08em}
+}
+@media(prefers-reduced-motion:reduce){
+  .cta{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="table-wrap" aria-hidden="true">
+  <div class="table">
+    <div class="felt">
+
+      <!-- Три открытые карты: A♠ K♥ Q♦ -->
+      <div class="cards">
+        <div class="card c1">
+          <div class="corner tl"><span class="rank">A</span><span class="pip">♠</span></div>
+          <div class="big">♠</div>
+          <div class="corner br"><span class="rank">A</span><span class="pip">♠</span></div>
+        </div>
+        <div class="card c2 red">
+          <div class="corner tl"><span class="rank">K</span><span class="pip">♥</span></div>
+          <div class="big">♥</div>
+          <div class="corner br"><span class="rank">K</span><span class="pip">♥</span></div>
+        </div>
+        <div class="card c3 red">
+          <div class="corner tl"><span class="rank">Q</span><span class="pip">♦</span></div>
+          <div class="big">♦</div>
+          <div class="corner br"><span class="rank">Q</span><span class="pip">♦</span></div>
+        </div>
+      </div>
+
+      <!-- Две закрытые карты -->
+      <div class="holes">
+        <div class="hole h1">♠</div>
+        <div class="hole h2">♠</div>
+      </div>
+
+      <!-- Стопка фишек + одиночная -->
+      <div class="chips">
+        <div class="chip-stack">
+          <div class="disk s1"></div>
+          <div class="disk s2"></div>
+          <div class="disk s3"></div>
+          <div class="disk s4"></div>
+          <div class="disk s5"></div>
+          <div class="disk s6"></div>
+          <div class="disk top s7"></div>
+        </div>
+        <div class="chip-single">
+          <div class="disk s1"></div>
+          <div class="disk top s3"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<a class="cta" id="join-btn"
+   href="https://t.me/m/0xU5R3EcOTY1"
+   target="_blank" rel="noopener noreferrer">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M21.5 3.5 2.5 11l6 2.3L18 6.5l-7 8.2v4.8l3-3.4 4.8 3.5z"/>
+  </svg>
+  <span>THAM GIA CÂU LẠC BỘ</span>
+</a>
+
+<script>
+document.getElementById('join-btn').addEventListener('click',function(){
+  if(typeof fbq==='function'){fbq('track','Lead');}
+});
+</script>
+
+</body>
+</html>
